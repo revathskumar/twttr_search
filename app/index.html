@@ -14,21 +14,35 @@
 
     </head>
     <body>
-    <div class="container-narrow">
-        <div class="form-inline">
-            <div class="well">
-                <div class="input-prepend">
-                    <span class="add-on">@</span>
-                    <input type="text" name="user" id="twitter_user" value="" class="input" placeholder="username"/>
-                </div>
-                <input type="text" name="search" id="search" class="input" placeholder="search term"/>
-                <button class='submit btn'>Search</button>
+        <div class="container-narrow">
+            <div class="masthead">
+                <!-- <ul class="nav nav-pills pull-right">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul> -->
+                <h3 class="muted">Twitter Timeline Search</h3>
             </div>
-        </div>
-        <ol id="tweets">
+            <div class="alert alert-error">
+                <strong>Error!</strong> Best check yo self, you're not looking too good.
+            </div>
+            <div class="form-inline">
+                <div class="well">
+                    <div class="input-prepend">
+                        <span class="add-on">@</span>
+                        <input type="text" name="user" id="twitter_user" value="" class="input" placeholder="username"/>
+                    </div>
+                    <input type="text" name="search" id="search" class="input" placeholder="search term"/>
+                    <button class='submit btn'>Search</button>
+                </div>
+            </div>
+            <div class="row">
+                <ol id="tweets">
 
-        </ol>
-    </div>
+                </ol>
+            </div>
+            <a href="#!" class="more">More >></a>
+        </div>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
@@ -47,6 +61,7 @@
         <script src="scripts/collections/tweets.js"></script>
         <script src="scripts/views/result_view.js"></script>
         <script src="scripts/views/tweet_view.js"></script>
+        <script src="scripts/views/error_view.js"></script>
         <!-- <script src="scripts/models/application-model.js"></script>
         <script src="scripts/collections/application-collection.js"></script> -->
         <!-- endbuild -->
