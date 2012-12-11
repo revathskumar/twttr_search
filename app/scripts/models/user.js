@@ -3,12 +3,13 @@ Twitter.Models.User = Backbone.Model.extend({
         username: "",
         search: ""
     },
-    validate: function () {
-        if (this.username === "") {
+    validate: function (data) {
+        // console.log(a);
+        if (data.username === "") {
             return "Enter a Twitter user";
         }
-        if (this.search === "") {
-            return "Enter a search term";
-        }
+        // if (data.search === "") {
+        //     return "Enter a search term";
+        // }
     }
 });
