@@ -2,7 +2,6 @@
 Twitter.Views.ResultView = Backbone.View.extend({
     tagName: 'li',
     initialize: function () {
-        console.log('initialize Result view');
         this.collection.on('add', this.addOne, this);
         this.collection.on('reset', this.remove, this);
     },
@@ -13,9 +12,9 @@ Twitter.Views.ResultView = Backbone.View.extend({
     },
     remove: function () {
         $('#tweets').html('');
+        $('.more').hide();
     },
     render: function () {
-
         return this;
     }
 });
