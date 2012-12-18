@@ -3,7 +3,15 @@
 Twitter.Views.FormView = Backbone.View.extend({
     events: {
         'click button.submit': 'submitForm',
-        'click a.more': 'fetchTweets'
+        'click a.more': 'fetchTweets',
+        'keyup #search': 'filter',
+        'submit #search_form': 'submitForm'
+    },
+    filter: function  (e) {
+        var searchTerm = $(e.target).val();
+        if (Twitter.Tweets.length > 0) {
+            Twitter.Tweets.trigger('filter', searchTerm);
+        }
     },
     initialize: function () {
         console.log('initialize FormView');
@@ -18,27 +26,30 @@ Twitter.Views.FormView = Backbone.View.extend({
         errorView.render();
     },
     fetchTweets: function (e) {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         Twitter.Tweets.fetch($('#twitter_user').val(), {
-            success: this.success
+            success: this.success,
+            error: this.showError
         });
         return false;
     },
     submitForm: function (e) {
         e.preventDefault();
-        Twitter.Tweets.last_tweet = '';
-        Twitter.Tweets.reset();
         var username = $('#twitter_user').val();
+        if (this.model.get('username') !== username) {
+            Twitter.Tweets.last_tweet = '';
+            Twitter.Tweets.reset();
+        }
         this.model.set('username', username);
-        Twitter.Tweets.fetch(username, {
-            success: this.success
-        });
+        this.fetchTweets(null);
         return false;
     },
     success: function (data) {
         var searchTerm = $('#search').val().toLowerCase();
         $.each(data, function (i, tweet) {
-            if (tweet.text !== undefined && (tweet.text.toLowerCase().search(searchTerm) >= 0 || searchTerm === "")) {
+            if (tweet.text !== undefined) {
                 Twitter.Tweets.create({
                     tweet: tweet.text,
                     id: tweet.id
@@ -48,7 +59,7 @@ Twitter.Views.FormView = Backbone.View.extend({
                 Twitter.Tweets.last_tweet = tweet.id;
             }
         });
-        $('.more').show();
+        Twitter.Tweets.trigger('filter', searchTerm);
     },
     render: function () {
         return this;
