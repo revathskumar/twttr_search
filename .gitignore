@@ -1,4 +1,12 @@
 intermediate/
 publish/
-dist/
 temp/
+dist/scripts/collections/
+dist/scripts/models/
+dist/scripts/views/
+dist/scripts/*.main.js
+dist/styles/*.main.css
+dist/styles/*.bootstrap.min.css
+dist/scripts/vendor/
+dist/manifest.appcache
+dist/.buildignore
