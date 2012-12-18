@@ -29,14 +29,16 @@
                 <strong>Error!</strong> Best check yo self, you're not looking too good.
             </div>
             <div class="form-inline">
-                <div class="well">
-                    <div class="input-prepend">
-                        <span class="add-on">@</span>
-                        <input type="text" name="user" id="twitter_user" value="" class="input" placeholder="username"/>
+                <form id='search_form'>
+                    <div class="well">
+                        <div class="input-prepend">
+                            <span class="add-on">@</span>
+                            <input type="text" name="user" id="twitter_user" value="revathskumar" class="input" placeholder="username"/>
+                        </div>
+                        <input type="text" name="search" id="search" class="input" placeholder="search term"/>
+                        <button class='submit btn'>Search</button>
                     </div>
-                    <input type="text" name="search" id="search" class="input" placeholder="search term"/>
-                    <button class='submit btn'>Search</button>
-                </div>
+                </form>
             </div>
             <div class="row">
                 <ol id="tweets">
