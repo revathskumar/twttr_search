@@ -30,11 +30,18 @@ Twitter.Collections.Tweets = Backbone.Collection.extend({
         }
     },
     fetch: function (username, options) {
-        var max_id = "";
+        var max_id = "",
+            timeout = 5000, id = setTimeout(function () {
+                options.error(null, "Request Timeout");
+            }, timeout);
         if (this.last_tweet !== '') {
             max_id = "max_id=" + this.last_tweet;
         }
-        $.getJSON(this.url + username + '&count=' + this.count + '&' + max_id, options.success);
+
+        $.getJSON(this.url + username + '&count=' + this.count + '&' + max_id, function (data) {
+            clearTimeout(id);
+            options.success(data);
+        });
     },
     add: function (newTweet) {
         var isDupe = this.any(function (tweet) {
