@@ -1,0 +1,4 @@
+[submodule "dist"]
+	path = dist
+	url = git@github.com:revathskumar/twttr_search.git
+	branch = gh-pages
